@@ -4,8 +4,28 @@ import Head from 'next/head';
 import ThemeToggleButton from '../components/ThemeToggleButton';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      const content = document.querySelector('.content');
+      if (content) {
+        content.classList.remove('fade-in');
+        void (content as HTMLElement).offsetWidth;
+        content.classList.add('fade-in');
+      }
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <>
       <Head>
@@ -16,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
       </Head>
       <Navbar />
-      <div className="fixed top-16 bottom-16 left-8 right-8 p-4 border overflow-auto custom-scrollbar" style={{ borderColor: 'var(--foreground)' }}>
+      <div className="fixed top-16 bottom-16 left-8 right-8 p-4 border custom-scrollbar" style={{ borderColor: 'var(--foreground)' }}>
         <Component {...pageProps} />
       </div>
       <Footer />
@@ -26,8 +46,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           display: none;
         }
         .custom-scrollbar {
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </>

@@ -25,6 +25,21 @@ body {
   font-family: 'Montserrat', 'Helvetica Neue', 'Roboto', Arial, Helvetica, sans-serif;
 }
 
+main {
+  opacity: 0;
+  animation: fadeInAnimation ease 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 h2 {
   color: var(--h2-color);
 }

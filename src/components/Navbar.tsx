@@ -24,16 +24,16 @@ export default function Navbar() {
         </Link>       
       </div>
       <div className="flex gap-4">
-        <Link href="/" className={`text-sm hover:text-gray-400 transition-colors duration-300 ${isActive("/") ? "active" : ""}`}>
+        <Link href="/" className={`text-sm hover:text-gray-400 transition-colors duration-300 ${isActive("/") ? "active underline pointer-events-none" : ""}`}>
           Home
         </Link>
-        <Link href="/about" className={`text-sm hover:text-gray-400 transition-colors duration-300 ${isActive("/about") ? "active" : ""}`}>
+        <Link href="/about" className={`text-sm hover:text-gray-400 transition-colors duration-300 ${isActive("/about") ? "active underline pointer-events-none" : ""}`}>
           About
         </Link>
-        <Link href="/projects" className={`text-sm hover:text-gray-400 transition-colors duration-300 ${isActive("/projects") ? "active" : ""}`}>
+        <Link href="/projects" className={`text-sm hover:text-gray-400 transition-colors duration-300 ${isActive("/projects") ? "active underline pointer-events-none" : ""}`}>
           Projects
         </Link>
-        <Link href="/contact" className={`text-sm hover:text-gray-400 transition-colors duration-300 ${isActive("/contact") ? "active" : ""}`}>
+        <Link href="/contact" className={`text-sm hover:text-gray-400 transition-colors duration-300 ${isActive("/contact") ? "active underline pointer-events-none" : ""}`}>
           Contact
         </Link>
       </div>
