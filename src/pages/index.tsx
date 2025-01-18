@@ -1,12 +1,9 @@
 import Image from "next/image";
-import Navbar from "../components/Navbar";
 
 export default function Home() {
   return (
     <div className="min-h-screen pt-24 p-8 pb-20">
-      <Navbar />
       <main>
-        {/* Hero Section */}
         <section className="flex flex-col items-center gap-4 text-center">
           <Image
             src="/profile.jpg"

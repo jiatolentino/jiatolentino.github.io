@@ -20,6 +20,5 @@ body {
   color: var(--foreground);
   background: var(--background) url('/black-paper-texture.jpg') no-repeat center center fixed;
   background-size: cover;
-  /* font-family: 'Roboto'; */
-  font-family: 'Helvetica Neue', 'Roboto', Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', 'Helvetica Neue', 'Roboto', Arial, Helvetica, sans-serif;
 }
