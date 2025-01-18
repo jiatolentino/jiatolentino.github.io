@@ -1,5 +1,3 @@
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,19 +5,41 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --background-image: url('/white-paper-texture.jpg');
+  --text-color: #171717;
+  --h2-color: #4b4b4b;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme='dark'] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --background-image: url('/black-paper-texture.jpg');
+  --text-color: #ededed;
+  --h2-color: #adadad;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background) url('/black-paper-texture.jpg') no-repeat center center fixed;
+  color: var(--text-color);
+  background: var(--background) var(--background-image) no-repeat center center fixed;
   background-size: cover;
-  /* font-family: 'Roboto'; */
-  font-family: 'Helvetica Neue', 'Roboto', Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', 'Helvetica Neue', 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+main {
+  opacity: 0;
+  animation: fadeInAnimation ease 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+h2 {
+  color: var(--h2-color);
 }
