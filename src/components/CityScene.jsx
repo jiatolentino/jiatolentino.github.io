@@ -44,7 +44,7 @@ export default function CityScene() {
       vertexShader: _VS,
       fragmentShader: _FS,
     });
-    const building = new THREE.Mesh(buildingGeometry, material);
+    const building = new THREE.Mesh(buildingGeometry, materialShader);
     building.position.set(0,height/2,0);
     scene.add(building);
 
