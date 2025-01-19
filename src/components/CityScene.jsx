@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
-export default function TorusScene() {
+export default function CityScene() {
   useEffect(() => {
     const _VS = `
       varying vec3 v_Normal;
@@ -29,11 +29,12 @@ export default function TorusScene() {
 
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.position.setZ(30);
+    camera.position.setZ(100);
+    camera.position.setY(50);
 
-    const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-    const rectGeometry = new THREE.BoxGeometry(10,50,10,1,5,1);
-    const material = new THREE.MeshStandardMaterial({ color: 0xff6347 });
+    const[width,height,depth] = [5,10,5]
+    const buildingGeometry = new THREE.BoxGeometry(width,height,depth,width,height,depth);
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
     const materialShader = new THREE.ShaderMaterial({
       uniforms: {
         torusColor: {
@@ -43,12 +44,12 @@ export default function TorusScene() {
       vertexShader: _VS,
       fragmentShader: _FS,
     });
-    const torus = new THREE.Mesh(geometry, materialShader);
-    const building = new THREE.Mesh(rectGeometry, material);
-    scene.add(torus, building);
+    const building = new THREE.Mesh(buildingGeometry, material);
+    building.position.set(0,height/2,0);
+    scene.add(building);
 
     const pointLight = new THREE.PointLight(0xffffff,100)
-    pointLight.position.set(0,0,0)
+    pointLight.position.set(0,50,0)
     const ambientLight = new THREE.AmbientLight(0xffffff,5)
     scene.add(pointLight, ambientLight);
 
@@ -58,17 +59,20 @@ export default function TorusScene() {
 
     const controls = new OrbitControls(camera, renderer.domElement);
 
-    function addStar() {
-      const geometry = new THREE.SphereGeometry(0.25,24,24);
-      const material = new THREE.MeshStandardMaterial({color: 0xffffff});
-      const star = new THREE.Mesh(geometry, material);
+    // function addBuilding() {
+    //     const[u,v,w] = Array(3).fill().map(()=>THREE.MathUtils.randFloatSpread(50));
+    //     const geometry = new THREE.BoxGeometry(u,v,w,u,v,w);
+    //     const pointsMaterial = new THREE.PointsMaterial({
+    //         size: 0.001
+    //     })
+    //     const box = new THREE.Points(geometry, pointsMaterial);
+  
+    //     const[x,y,z] = Array(3).fill().map(()=>THREE.MathUtils.randFloatSpread(100));
+    //     box.position.set(x,Math.abs(v/2),z);
+    //     scene.add(box)
+    // }
 
-      const[x,y,z] = Array(3).fill().map(()=>THREE.MathUtils.randFloatSpread(100));
-      star.position.set(x,y,z);
-      scene.add(star)
-    }
-
-    Array(200).fill().forEach(addStar);
+    // Array(2).fill().forEach(addBuilding);
 
     function animate() {
       requestAnimationFrame(animate);
@@ -80,9 +84,9 @@ export default function TorusScene() {
       // Update the torusColor uniform
       materialShader.uniforms.torusColor.value.set(r, g, b);
 
-      torus.rotation.x += 0.000;
-      torus.rotation.y += 0.010;
-      torus.rotation.z += 0.000;
+    //   torus.rotation.x += 0.000;
+    //   torus.rotation.y += 0.010;
+    //   torus.rotation.z += 0.000;
 
       controls.update();
 

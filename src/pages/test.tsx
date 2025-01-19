@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Header from "@/components/Header";
-import TorusScene from '@/components/TorusScene';
+import CityScene from '@/components/CityScene';
 import quotes from '@/data/quotes';
 
 export default function Test() {
@@ -16,7 +16,7 @@ export default function Test() {
       <Header />
       <div className="border-l mx-2" style={{ borderColor: 'var(--foreground)' }}></div>
       <main className="relative w-5/6 pl-4 overflow-auto custom-scrollbar font-thin mb-4 leading-snug tracking-tighter" style={{ borderColor: 'var(--foreground)' }}>
-        <TorusScene />
+        <CityScene />
       </main>
     </div>
   );
