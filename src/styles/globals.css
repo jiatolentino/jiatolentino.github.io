@@ -43,3 +43,7 @@ main {
 h2 {
   color: var(--h2-color);
 }
+
+/* canvas {
+  position: fixed;
+} */

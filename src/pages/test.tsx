@@ -1,14 +1,22 @@
-import Navbar from "../components/Navbar";
+import { useEffect, useState } from 'react';
+import Header from "@/components/Header";
+import TorusScene from '@/components/TorusScene';
+import quotes from '@/data/quotes';
 
 export default function Test() {
+  const [randomQuote, setRandomQuote] = useState({ quote: "", author: "" });
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    setRandomQuote(quotes[randomIndex]);
+  }, []);
+
   return (
-    <div className="min-h-screen p-8 pb-20">
-      <Navbar />
-      <main className="flex flex-col items-center gap-8">
-        <h1 className="text-4xl font-bold">Test Page</h1>
-        <p className="text-center max-w-xl">
-          This is a test page to demonstrate the Navbar component.
-        </p>
+    <div className="flex h-full p-4">
+      <Header />
+      <div className="border-l mx-2" style={{ borderColor: 'var(--foreground)' }}></div>
+      <main className="relative w-5/6 pl-4 overflow-auto custom-scrollbar font-thin mb-4 leading-snug tracking-tighter" style={{ borderColor: 'var(--foreground)' }}>
+        <TorusScene />
       </main>
     </div>
   );
